@@ -11,7 +11,7 @@ export default function BookDetail() {
 
   useEffect(() => {
     if (!book) {
-      navigate("/not-found", { replace: true });
+      navigate("/not-found");
     }
   }, [book, navigate]);
 
