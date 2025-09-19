@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { books } from "../data/books";
 import { FaArrowLeft } from "react-icons/fa";
+import { useEffect } from "react";
 
 export default function BookDetail() {
   const { id } = useParams<{ id: string }>();
@@ -8,8 +9,13 @@ export default function BookDetail() {
 
   const book = books.find((b) => b.id === id);
 
+  useEffect(() => {
+    if (!book) {
+      navigate("/not-found", { replace: true });
+    }
+  }, [book, navigate]);
+
   if (!book) {
-    navigate("/not-found", { replace: true });
     return null;
   }
 
